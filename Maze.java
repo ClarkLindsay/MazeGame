@@ -59,7 +59,7 @@ public class Maze{
       
       int startCol = col;
       
-      if (addMonsters.equals("monsters")) {
+      if (addMonsters.equals("addMonsters")) {
          for (int i = 1; i <= numberOfMonsters; i++) {
             while (maze[row][col] != ' ')  { 
                row = generator.nextInt(6) + 1; 
@@ -74,7 +74,7 @@ public class Maze{
       
       col = startCol;      
    
-      /*System.out.println();
+      System.out.println();
       
       for (int i = 0; i < 7; i ++) {
          
@@ -84,7 +84,7 @@ public class Maze{
                                
          } 
          System.out.println(); 
-      }*/ 
+      } 
          
       System.out.println(); 
    
@@ -118,7 +118,7 @@ public class Maze{
       
          System.out.println();
       
-         /*for (int i = 0; i < 7; i ++) {
+         for (int i = 0; i < 7; i ++) {
          
             for (int j = 0; j < 31; j++){
             
@@ -126,7 +126,7 @@ public class Maze{
                                
             } 
             System.out.println(); 
-         }*/
+         }
           
          System.out.println();
              
@@ -335,7 +335,7 @@ public class Maze{
       return(maze);
    }
    
-   public static void hitMonster(char[][] maze) {
+   public static void hitMonster(char[][] maze) throws IOException {
    
       System.out.println();
    
@@ -343,60 +343,34 @@ public class Maze{
       
       maze[row][col] = ' ';
       
-      int count = 1;
+      int randomMove = generator.nextInt(3) + 1;
       
-      while (count <= 5) {
+      String direction = "";
       
-         if (maze[row + 1][col] == ' ')  {
-            
-            maze[row][col] = ' ';
-               
-            row++; 
-               
-            maze[row][col] = 'p';
-            
-            count++;
-         }
-            
-         else if (maze[row - 1][col] == ' ')  {
-            
-            maze[row][col] = ' ';
-               
-            row--; 
-               
-            maze[row][col] = 'p';
-            
-            count++;
-         } 
-            
-         else if (maze[row][col + 1] == ' ')  {
-           
-            maze[row][col] = ' ';
-               
-            col++; 
-               
-            maze[row][col] = 'p';
-            
-            count++;
-         }
-               
-         else if (maze[row][col - 1] == ' ')  {
-             
-            maze[row][col] = ' ';
-               
-            col--; 
-               
-            maze[row][col] = 'p';
-            
-            count++;
-         }
-               
-         else {
-            maze[row][col] = 'p';
-         }
+      for (int i = 1; i <= 5; i++) {
+         switch (randomMove) {
          
-      }
-              
+            case (1):
+               direction = "left";
+               maze = moveAround(direction, maze);
+               break;
+            
+            case (2):
+               direction = "right";
+               maze = moveAround(direction, maze);
+               break;
+           
+            case (3):
+               direction = "up";
+               maze = moveAround(direction, maze);
+               break;
+           
+            case (4):
+               direction = "down";
+               maze = moveAround(direction, maze);
+               break;
+         }
+      }              
    }
 
 }
